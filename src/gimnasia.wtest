@@ -2,42 +2,37 @@ import gimnasia.*
 
 describe "rutinas" {
 
-//Punto 1: rutinas
-//	const correrEnLaPlaya = // Una actividad de running con intensisdad 1.2
-//	const remarEnElDelta = // Una actividad de remo
-//	const remarEnCaminoRemeros = // Una actividad de remo comptetitivo
-//	const maratonBA = //Una maraton con intensidad 1.5
+	const maratonBA            = new Maraton(intensidad = 1.5)  //Una maraton con intensidad 1.5
+	const correrEnLaPlaya      = new Running(intensidad = 1.2)  // Una actividad de running con intensisdad 1.2
+	const remarEnElDelta       = new Remo()                     // Una actividad de remo
+	const remarEnCaminoRemeros = new RemoDeCompeticion()        // Una actividad de remo comptetitivo
+	
 
-//Punto 2: personas
-	//const calamardo = //Una persona Sedentaria con peso 60 y tiempo de ejercicio 5
- 	//const bob =  // Una persona atleta con peso 40 
+	test "consulta running" {
 
-//Punto 3: clubes
-	//const recreo = //un predio con correrEnLaPlaya y maratonBA
-	//const nautico = //un predio con remarEnElDelta y remarEnCaminoRemeros
-	//const clubBarrial = //un club con recreo y nautico
-//	
-//
-// PUNTO 1
-//	test "1.1 consulta running" {
-//		//correrEnLaPlaya deberia gastar 360 calorias al practicarse por 5 minutos
-//		//correrEnLaPlaya deberia gastar 10200 calorias al practicarse por 90 minutos
-//	}
+		assert.equals(360, correrEnLaPlaya.quemarCalorias(5))
+		assert.equals(10200, correrEnLaPlaya.quemarCalorias(90))
+	}
 
-//	test "1.2 consulta maraton" {
-//		//maratonBA deberia gastar 900 calorias al practicarse por 5 minutos
-//		//maratonBA deberia gastar 25500 calorias al practicarse por 90 minutos
-//	}
+	test "consulta maraton" {
+		
+		assert.equals(900, maratonBA.quemarCalorias(5))
+		assert.equals(25500, maratonBA.quemarCalorias(90))
+	}
 
-//	test "1.3 consulta remo" {
-//		//remarEnElDelta deberia gastar 520 calorias al practicarse por 5 minutos
-//		//remarEnElDelta deberia gastar 9360 calorias al practicarse por 90 minutos
-//	}
+	test "consulta remo" {
+		
+		assert.equals(520, remarEnElDelta.quemarCalorias(5))
+		assert.equals(9360, remarEnElDelta.quemarCalorias(90))
+	}
 
-//	test "1.4 consulta remo competitivo" {
-//		//remarEnCaminoRemeros deberia gastar 510 calorias al practicarse por 5 minutos
-//		//remarEnCaminoRemeros deberia gastar 12750 calorias al practicarse por 90 minutos
-//	}
+	test "consulta remo competitivo" {
+		assert.equals(510, remarEnCaminoRemeros.quemarCalorias(5))
+		assert.equals(12750, remarEnCaminoRemeros.quemarCalorias(90))
+	}
+}
+
+
 
 //Punto 2: Personas
 	//ATENCION: usar el metodo truncate(3) para truncar un numero a 3 decimales
@@ -105,4 +100,22 @@ describe "rutinas" {
 //		//Las rutinas más exigentes del clubBarrial para calamardo son maratonBA y remarEnElDelta
 //	}
 	
-}
+
+
+
+						//Punto 1: rutinas
+						//	const correrEnLaPlaya = // Una actividad de running con intensisdad 1.2
+						//	const remarEnElDelta = // Una actividad de remo
+						//	const remarEnCaminoRemeros = // Una actividad de remo comptetitivo
+						//	const maratonBA = //Una maraton con intensidad 1.5
+
+						//Punto 2: personas
+							//const calamardo = //Una persona Sedentaria con peso 60 y tiempo de ejercicio 5
+						 	//const bob =  // Una persona atleta con peso 40 
+
+						//Punto 3: clubes
+							//const recreo = //un predio con correrEnLaPlaya y maratonBA
+							//const nautico = //un predio con remarEnElDelta y remarEnCaminoRemeros
+							//const clubBarrial = //un club con recreo y nautico
+						//	
+						//
