@@ -1,3 +1,5 @@
+// 1. Rutinas
+
 class Rutinas {
     method descanso(tiempo) 
 
@@ -33,4 +35,69 @@ class RemoDeCompeticion inherits Remo {
     override method descanso(tiempo) {
         return (super(tiempo) - 3).max(2)
     }      
+}
+
+
+
+// 2. Personas
+
+class Persona {
+    method tiempo()  
+
+    var property peso 
+
+    method kilosPorCalorias()
+
+    method pesoPerdidosPorRutina(rutina) {
+        return self.caloriasPerdidasPor(rutina) / self.kilosPorCalorias()
+    }
+
+    method caloriasPerdidasPor(rutina) {
+        return rutina.quemarCalorias(self.tiempo())
+    }
+
+    method realizarPractica(rutina) {
+        self.validarPractica(rutina)
+        peso -= self.pesoPerdidosPorRutina(rutina)
+    }
+
+    method validarPractica(rutina) {
+        if (not self.puedePracticar(rutina)) {
+            self.error("No puede practicar la rutina")
+        }
+    }
+
+    method puedePracticar(rutina) 
+}
+
+
+class Sedentario inherits Persona {
+
+    var property tiempo 
+    
+    override method kilosPorCalorias() { 
+        return 7000
+    }
+
+    override method puedePracticar(rutina) {
+        return self.peso() > 50    
+    }
+}
+
+
+class Atleta inherits Persona {
+    
+    override method tiempo() { return 90 }
+    
+    override method kilosPorCalorias() { 
+        return 8000
+    }
+    
+    override method pesoPerdidosPorRutina(rutina) {
+        return super(rutina) - 1
+    }
+
+    override method puedePracticar(rutina) {
+        return self.caloriasPerdidasPor(rutina) > 10000
+    }
 }
