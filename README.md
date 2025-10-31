@@ -75,8 +75,7 @@ Cuidado, no siempre pueden hacer una rutina, cada tipo de persona tiene su regla
 
 Cuando realizan una rutina su peso baja una cantidad de kilos 
 que dependerá de la cantidad de calorías que quema la rutina durante el tiempo 
-en que la persona la practica, y de la cantidad de kilos por caloría que 
-que depende tipo de persona:
+en que la persona la practica, y de la cantidad de kilos por caloría que depende del tipo de persona:
 
 Peso que pierde al hacer una rutina: `calorias que baja la rutina en el tiempo que la practica / kilosPorCaloríaQuePierde `
 
@@ -141,8 +140,8 @@ Al practicar las rutinas del punto anterior peso final es:
 
 ## 3. Clubes
 
-Un **club** tiene varios predios
-De un **predio** se conoce las rutinas que se pueden practicar
+Un **club** tiene varios predios.
+De un **predio** se conoce las rutinas que se pueden practicar.
 Se pide:
 
 - El mejor predio de un club para una persona: Es el predio que más calorías le 
