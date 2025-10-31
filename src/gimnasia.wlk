@@ -5,7 +5,7 @@ class Rutinas {
 
     method intensidad()
 
-    method quemarCalorias(tiempo) { return 100 * (tiempo - self.descanso(tiempo)) * self.intensidad() }
+    method calorias(tiempo) { return 100 * (tiempo - self.descanso(tiempo)) * self.intensidad() }
 }
 
 
@@ -18,7 +18,7 @@ class Running inherits Rutinas {
 
 class Maraton inherits Running {
     
-    override method quemarCalorias(tiempo) { return super(tiempo) * 2 }
+    override method calorias(tiempo) { return super(tiempo) * 2 }
 }
 
 
@@ -53,7 +53,7 @@ class Persona {
     }
 
     method caloriasPerdidasPor(rutina) {
-        return rutina.quemarCalorias(self.tiempo())
+        return rutina.calorias(self.tiempo())
     }
 
     method realizarPractica(rutina) {
@@ -99,5 +99,42 @@ class Atleta inherits Persona {
 
     override method puedePracticar(rutina) {
         return self.caloriasPerdidasPor(rutina) > 10000
+    }
+}
+
+
+// 3. Clubes
+
+
+class Club {
+    const property predios
+
+    method mejorPredioPara(persona) {
+        return predios.max({ predio => predio.totalCalorias(persona) })
+    }  
+
+    method prediosTranquis(persona) {
+        return predios.filter({ predio => predio.esPredioTranquiPara(persona) })
+    }
+
+    method rutinasMasExigentes(persona) {
+        return predios.map({ predio => predio.rutinaMasExigente(persona) }).asSet()
+    }
+}
+
+
+class Predio {
+    const property rutinas
+
+    method totalCalorias(persona) { 
+        return rutinas.sum({ rutina => persona.caloriasPerdidasPor(rutina) }) 
+    }  
+
+    method esPredioTranquiPara(persona) {
+        return rutinas.any({ rutina => persona.caloriasPerdidasPor(rutina) < 500 })
+    }
+
+    method rutinaMasExigente(persona) {
+        return rutinas.max({ rutina => persona.caloriasPerdidasPor(rutina) })
     }
 }

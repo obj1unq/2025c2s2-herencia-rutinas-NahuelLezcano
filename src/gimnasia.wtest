@@ -10,25 +10,25 @@ describe "rutinas" {
 
 	test "consulta running" {
 
-		assert.equals(360, correrEnLaPlaya.quemarCalorias(5))
-		assert.equals(10200, correrEnLaPlaya.quemarCalorias(90))
+		assert.equals(360, correrEnLaPlaya.calorias(5))
+		assert.equals(10200, correrEnLaPlaya.calorias(90))
 	}
 
 	test "consulta maraton" {
 		
-		assert.equals(900, maratonBA.quemarCalorias(5))
-		assert.equals(25500, maratonBA.quemarCalorias(90))
+		assert.equals(900, maratonBA.calorias(5))
+		assert.equals(25500, maratonBA.calorias(90))
 	}
 
 	test "consulta remo" {
 		
-		assert.equals(520, remarEnElDelta.quemarCalorias(5))
-		assert.equals(9360, remarEnElDelta.quemarCalorias(90))
+		assert.equals(520, remarEnElDelta.calorias(5))
+		assert.equals(9360, remarEnElDelta.calorias(90))
 	}
 
 	test "consulta remo competitivo" {
-		assert.equals(510, remarEnCaminoRemeros.quemarCalorias(5))
-		assert.equals(12750, remarEnCaminoRemeros.quemarCalorias(90))
+		assert.equals(510, remarEnCaminoRemeros.calorias(5))
+		assert.equals(12750, remarEnCaminoRemeros.calorias(90))
 	}
 }
 
@@ -37,10 +37,16 @@ describe "Personas" {
 
 	const calamardo            = new Sedentario(peso = 60, tiempo = 5)
 	const bob 				   = new Atleta(peso = 40)
-	const maratonBA            = new Maraton(intensidad = 1.5)  //Una maraton con intensidad 1.5
+
+	const maratonBA            = new Maraton(intensidad = 1.5)  // Una maraton con intensidad 1.5
 	const correrEnLaPlaya      = new Running(intensidad = 1.2)  // Una actividad de running con intensisdad 1.2
 	const remarEnElDelta       = new Remo()                     // Una actividad de remo
 	const remarEnCaminoRemeros = new RemoDeCompeticion()        // Una actividad de remo comptetitivo
+
+	const clubBarrial          = new Club(predios = #{recreo, nautico})
+	const recreo    		   = new Predio(rutinas = #{correrEnLaPlaya, maratonBA})
+	const nautico    		   = new Predio(rutinas = #{remarEnElDelta, remarEnCaminoRemeros})
+
 
   	test "2.1.1 test sedentario running" {
 		calamardo.realizarPractica(correrEnLaPlaya)
@@ -87,28 +93,19 @@ describe "Personas" {
 		bob.realizarPractica(remarEnCaminoRemeros)
 		assert.equals(39.406, bob.peso().truncate(3))
 	}
+
+	test "3.1 el mejor predio" {
+		assert.equals(recreo, clubBarrial.mejorPredioPara(bob))	
+		assert.equals(recreo, clubBarrial.mejorPredioPara(calamardo))	
+	}
+
+	test "3.2 predios tranquis" {
+		assert.equals(#{}, clubBarrial.prediosTranquis(bob))
+		assert.equals(#{recreo}, clubBarrial.prediosTranquis(calamardo))
+	}
+
+	test "3.3 rutinas más exigentes" {
+		assert.equals(#{maratonBA, remarEnCaminoRemeros}, clubBarrial.rutinasMasExigentes(bob))
+		assert.equals(#{maratonBA, remarEnElDelta}, clubBarrial.rutinasMasExigentes(calamardo))
+	}
 }
-	
-	
- 
-
-//punto 3: Consultas
-//	test "3.1 el mejor predio" {
-//		//El mejor predio del clubBarrial para bob debería ser recreo		
-//		//El mejor predio del clubBarrial para calamardo debería ser recreo		
-//	}	
-	
-//	test "3.2 predios tranquis" {
-//		//No debería haber predios tranquis en el clubBarrial para bob
-//		//Los predios tranquis del clubBarrial para calamardo solo incluyen a recreo  
-//	}
-	
-//	test "3.3 rutinas más exigentes" {
-//		//Las rutinas más exigentes del clubBarrial para bob son maratonBA y remarEnCaminoRemeros
-//		//Las rutinas más exigentes del clubBarrial para calamardo son maratonBA y remarEnElDelta
-//	}
-	
-
-
-
-
