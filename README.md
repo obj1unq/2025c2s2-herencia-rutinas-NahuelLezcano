@@ -140,8 +140,8 @@ Al practicar las rutinas del punto anterior peso final es:
 
 ## 3. Clubes
 
-Un **club** tiene varios predios
-De un **predio** se conoce las rutinas que se pueden practicar
+Un **club** tiene varios predios.
+De un **predio** se conoce las rutinas que se pueden practicar.
 Se pide:
 
 - El mejor predio de un club para una persona: Es el predio que más calorías le 
